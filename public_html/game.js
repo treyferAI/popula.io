@@ -10,13 +10,16 @@ var time;
 
 function start() {
     console.log("Pre-allocation START");
-
-    var canvas = document.getElementById("myCanvas");
-
-    canvas.width = 500;
-    canvas.height = 500;
-    
     init();
+}
+
+function onClick(elementID) {
+    switch(elementID) {
+        case 1:
+            population++;
+            console.log(population);
+        break;
+    }
 }
 
 function sleep(ms) {
@@ -26,7 +29,7 @@ function sleep(ms) {
 function init() { 
     population = 1;
     growthRate = 2.0; 
-    running = true;
+    running = false;
     time = new Date();
     run();
 }
@@ -35,7 +38,7 @@ function run() {
     while(running) {
         update();
         draw();
-        window.requestAnimationFrame(loop)
+        window.requestAnimationFrame(run);
     }
 }
 
@@ -44,7 +47,7 @@ function update() {
 }
 
 function draw() {
-    document.getElementById("popCounter").innerHTML = population;
+    document.getElementById("population_count").innerHTML = population;
 }
 
 function updatePopulation() {
