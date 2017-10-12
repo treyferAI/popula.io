@@ -7,13 +7,19 @@
     <script src="game.js"></script>
     <style>
         body {background-color: rgb(63, 63, 63);}
+        p {color: rgb(255, 255, 255);}
     </style>
 </head>
 <body>
-    <div>
-        <canvas id="myCanvas"></canvas>
+    <div id="button1_container">
+        <img id="button1" src="src/button1_up.png" onclick="onClick(1);"></button>
+        <!--<canvas id="button" style="border:2px solid #ffffff"></canvas> -->
     </div>
-    <p>Lorem Ipsum</p>
+    <div id="count_population_container">
+        <p id="count_population">Current Population: </p>
+    </div>
+    <div id="count_science_container">
+        <p id="count_science">Current Science: </p>
+    </div>
 </body>
-
 </html>
