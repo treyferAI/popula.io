@@ -1,56 +1,67 @@
-window.onload=function()
-{
-    start();
-}
+window.onload = function () {
 
-var population;
-var growthRate;
-var running;
-var time;
+    //Initialization
+    var game = new Phaser.Game(800, 600, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
 
-function start() {
-    console.log("Pre-allocation START");
-    init();
-}
-
-function onClick(elementID) {
-    switch(elementID) {
-        case 1:
-            population++;
-            console.log(population);
-        break;
+    function preload() {
+        // Preload all assets/sprites here for use in the game //
+        console.log("Initializing...")
+        game.load.spritesheet('button', 'assets/buttons/button_sprite_sheet.png', 193, 71);
+        game.load.image('background','assets/misc/starfield.jpg');
     }
-}
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+     //Global
+     var population;
+     var growthRate;
+     var running;
+     var time;
+     var button;
+     var background;
 
-function init() { 
-    population = 1;
-    growthRate = 2.0; 
-    running = false;
-    time = new Date();
-    run();
-}
+    function create() {
+        
+        game.stage.backgroundColor = '#182d3b'; //Hex?
 
-function run() {
-    while(running) {
-        update();
-        draw();
-        window.requestAnimationFrame(run);
+        background = game.add.tileSprite(0,0,800,600, 'background');
+
+        button = game.add.button(game.world.centerX - 95, 400, 'button', actionOnClick, this, 2, 1, 0);
+
+        button.onInputOver.add(over, this);
+        button.onInputDown.add(down, this);
+
+        population = 1;
+        growthRate = 2.0;
+        running = true;
     }
-}
 
-function update() {
-    updatePopulation();
-}
+    function update() {
+        updatePopulation();
+    }
 
-function draw() {
-    document.getElementById("population_count").innerHTML = population;
-}
+    function up() {
+        console.log('button up', arguments);
+    }
+    
+    function down() {
+        console.log('button down', arguments);
+    }
+    
+    function over() {
+        //console.log('button over');
+    }
+    
+    function out() {
+        //console.log('button out');
+    }
+    
+    function actionOnClick () {
+    
+        background.visible =! background.visible;
+    
+    }
 
-function updatePopulation() {
-    population++;
-}
+    function updatePopulation() {
 
+    }
+
+}
